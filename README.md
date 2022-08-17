@@ -30,6 +30,7 @@ Rayvison_WSMgr预设上挂挂载了WSMgr脚本，这是一个不被销毁的单�
         WSMgr.Instance.OnStringMsgRevice += DealWithStringMsg; 
 ```
 
+
 ```C#
         //取消订阅事件
         WSMgr.Instance.OnBinaryMsgRecv -= DealWithBinaryMsg;
