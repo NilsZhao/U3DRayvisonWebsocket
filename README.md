@@ -25,24 +25,24 @@ Rayvison_WSMgr预设上挂挂载了WSMgr脚本，这是一个不被销毁的单�
 #### 消息收取示例
 
 ```C#
-            //订阅事件
-            WSMgr.Instance.OnBinaryMsgRecv += DealWithBinaryMsg;
-            WSMgr.Instance.OnStringMsgRevice += DealWithStringMsg; 
+        //订阅事件
+        WSMgr.Instance.OnBinaryMsgRecv += DealWithBinaryMsg;
+        WSMgr.Instance.OnStringMsgRevice += DealWithStringMsg; 
 ```
 
 ```C#
-             //取消订阅事件
-            WSMgr.Instance.OnBinaryMsgRecv -= DealWithBinaryMsg;
-            WSMgr.Instance.OnStringMsgRevice += DealWithStringMsg;
+        //取消订阅事件
+        WSMgr.Instance.OnBinaryMsgRecv -= DealWithBinaryMsg;
+        WSMgr.Instance.OnStringMsgRevice += DealWithStringMsg;
 ```
 
 ```C#
-           //具体逻辑中处理二进制消息的方法（传入参数为已转换好的结果）
+        //具体逻辑中处理二进制消息的方法（传入参数为已转换好的结果）
         public void DealWithBinaryMsg(string msg)
         { 
             Debug.Log(msg);
         }
-           //具体逻辑中处理字符串消息的方法（传入参数为已转换好的结果）
+        //具体逻辑中处理字符串消息的方法（传入参数为已转换好的结果）
         public void DealWithStringMsg(string msg)
         {
             Debug.Log(msg);
