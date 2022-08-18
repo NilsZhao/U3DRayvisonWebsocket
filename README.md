@@ -16,7 +16,7 @@ Unity2020之后的版本默认包含了Newtonsoft插件，如果报错，删除 
 
 ### 调用说明
 
-利用RayvisonWebsocket和服务端交互非常简单。
+利用RayvisonWebsocket和服务端交互非常简单，只需要将Rayvison_WSMgr预设拖放到项目的第一个场景即可。
 
 Rayvison_WSMgr预设上挂挂载了WSMgr脚本，这是一个不被销毁的单例实例，您可以在任意需要的地方通过[WSMgr.Instance]进行调用
 
