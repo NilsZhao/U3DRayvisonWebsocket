@@ -69,57 +69,5 @@ Rayvison_WSMgr预设上挂挂载了WSMgr脚本，这是一个不被销毁的单�
 
 
 
-### 多点触控
-
-Unity在Windows平台默认不支持触摸，若要在PC端获取触控输入数据，只能在Windows触屏电脑上运行，且需要安装InputManager插件，开启模拟触摸输入。且Unity是闭源引擎，Input类不接受数据的注入，是只读的，暂时无法在Unity端和我们的系统通讯来模拟触控输入。
-
-后续我们将在节点机系统上作处理，来模拟触发Windows触摸，Unity再模拟触控输入。这一步目前还在开发中。
-
-现在我们还提供了一个临时方案，在OnMessage方法中可以接收触屏点位数据，然后手动解析处理。
-
-#### 消息格式示例：
-
->TouchIndex表示序号，从0开始
->TouchType表示状态，0是按下，1是移动，2是抬起
->PosX PosY表示屏幕位置坐标，左上角为0,0
-
-```json
-RayInput_Touch:{"TouchType":1,"TouchIndex":0,"PosX":20,"PosY":30,"Force":1}
-```
-
-
-
-#### 解析示例：
-
-```C#
-  public void DealWithMutiTouchMsg(string msg)
-    {
-        if (msg.Contains("RayInput_Touch"))
-        {
-            Debug.Log("消息内容" + msg);
-            string msgJson = msg.Replace("RayInput_Touch:", "");
-            var jdata = JsonMapper.ToObject(msgJson);
-            Debug.Log("位置：X: " + jdata["PosX"].ToString() + ", Y: " + jdata["PosY"].ToString());
-            Debug.Log("TouchType: " + jdata["TouchType"].ToString() + ", TouchIndex: " + jdata["TouchIndex"].ToString());
-
-            RayVisoinTouch rayVisionTouch = new RayVisoinTouch();
-            rayVisionTouch.TouchType = int.Parse(jdata["TouchType"].ToString());
-            rayVisionTouch.TouchIndex = int.Parse(jdata["TouchIndex"].ToString());
-            rayVisionTouch.PosX = double.Parse(jdata["PosX"].ToString());
-            rayVisionTouch.PosY = double.Parse(jdata["PosY"].ToString());
-            rayVisionTouch.Force = double.Parse(jdata["Force"].ToString());
-            if (rayVisionTouch.TouchIndex >= rayVisionTouchs.Length)
-            {
-                Debug.Log("超过最大点触识别数");
-                return;
-            }
-            rayVisionTouchs[rayVisionTouch.TouchIndex] = rayVisionTouch;
-        }
-    }
-}
-```
-
-完整脚本可以参考MultiTouchDemo.cs
-
 
 
