@@ -62,7 +62,7 @@ Rayvison_WSMgr预设上挂挂载了WSMgr脚本，这是一个不被销毁的单�
         }
 ```
 
-完整脚本可以参考RCRDemo.cs
+完整脚本可以参考RayVisonDemo.cs
 
 
 
